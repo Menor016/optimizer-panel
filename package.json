@@ -5,11 +5,60 @@
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
-    "dev": "electron ."
+    "dev": "electron .",
+    "build": "electron-builder",
+    "dist": "npm run build"
   },
   "dependencies": {
     "better-sqlite3": "^11.7.0",
     "electron": "^31.2.1",
+    "electron-builder": "^24.13.0",
     "express": "^4.19.2"
+  },
+  "build": {
+    "appId": "com.optimizerpanel.app",
+    "productName": "Optimizer Panel",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "app/**/*",
+      "public/**/*",
+      "package.json",
+      "README.md"
+    ],
+    "asar": true,
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "category": "Utility"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
   }
 }
