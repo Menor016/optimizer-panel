@@ -1,27 +1,49 @@
 # OPTIMIZER PANEL
 
-Aplicação real de monitoramento e otimização do sistema operacional, com:
-- dashboard de CPU, RAM, disco, rede e processos reais
-- backend local com API REST
-- módulos de limpeza segura, inicialização, rede e performance
-- logs estruturados, backup e rollback
-- confirmação antes de operações potencialmente destrutivas
+Aplicativo desktop local para monitoramento e otimização do sistema operacional.
 
-## Stack recomendado
-- Electron
-- Express
-- SQLite local
-- APIs nativas do sistema operacional
+## Requisitos
 
-## Como executar
+- Node.js 18+
+- npm
+- Ambiente nativo do sistema operacional em que o app será executado
 
-1. Instale dependências:
+## Instalação
+
+1. Clone o repositório
+2. Entre na pasta do projeto
+3. Instale as dependências:
+
    npm install
-2. Inicie a aplicação:
+
+4. Inicie a aplicação:
+
    npm start
 
-## Observações de segurança
-- A aplicação nunca executa comandos arbitrários vindos da interface.
-- Operações destrutivas exigem confirmação.
-- O painel só remove itens das categorias explícitas e seguras.
-- Quando uma operação exige privilégio, ela é solicitada apenas no momento necessário.
+## Build para distribuição
+
+Para gerar os instaladores executáveis do aplicativo:
+
+- Windows:
+  npm run pack:win
+
+- Linux:
+  npm run pack:linux
+
+- macOS:
+  npm run pack:mac
+
+Os artefatos serão gerados na pasta dist/.
+
+## Observações importantes
+
+- O app foi projetado para rodar localmente e acessar dados reais do sistema.
+- Operações de limpeza, encerramento de processos e alteração de inicialização exigem confirmação.
+- Não são executados comandos arbitrários vindos da interface.
+- Quando uma operação exige privilégios, a aplicação solicita somente o necessário.
+
+## Estrutura principal
+
+- app/: backend, adaptadores do sistema e lógica da aplicação
+- public/: frontend e interface do painel
+- dist/: artefatos gerados pelo empacotamento

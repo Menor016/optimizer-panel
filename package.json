@@ -7,7 +7,10 @@
     "start": "electron .",
     "dev": "electron .",
     "build": "electron-builder",
-    "dist": "npm run build"
+    "dist": "npm run build",
+    "pack:win": "electron-builder --win",
+    "pack:linux": "electron-builder --linux",
+    "pack:mac": "electron-builder --mac"
   },
   "dependencies": {
     "better-sqlite3": "^11.7.0",
@@ -33,9 +36,7 @@
       "target": [
         {
           "target": "nsis",
-          "arch": [
-            "x64"
-          ]
+          "arch": ["x64"]
         }
       ]
     },
@@ -43,9 +44,7 @@
       "target": [
         {
           "target": "AppImage",
-          "arch": [
-            "x64"
-          ]
+          "arch": ["x64"]
         }
       ],
       "category": "Utility"
@@ -54,9 +53,7 @@
       "target": [
         {
           "target": "dmg",
-          "arch": [
-            "x64"
-          ]
+          "arch": ["x64"]
         }
       ]
     }
