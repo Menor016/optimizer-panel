@@ -10,7 +10,8 @@
     "dist": "npm run build",
     "pack:win": "electron-builder --win",
     "pack:linux": "electron-builder --linux",
-    "pack:mac": "electron-builder --mac"
+    "pack:mac": "electron-builder --mac",
+    "release:ci": "npm run build"
   },
   "dependencies": {
     "better-sqlite3": "^11.7.0",
@@ -32,13 +33,16 @@
     ],
     "asar": true,
     "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "icon": "build/icon",
     "win": {
       "target": [
         {
           "target": "nsis",
           "arch": ["x64"]
         }
-      ]
+      ],
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false
     },
     "linux": {
       "target": [
@@ -47,7 +51,12 @@
           "arch": ["x64"]
         }
       ],
-      "category": "Utility"
+      "category": "Utility",
+      "desktop": {
+        "Name": "Optimizer Panel",
+        "Comment": "Sistema real de monitoramento e otimização",
+        "Categories": "Utility;System;Monitor;Network;"
+      }
     },
     "mac": {
       "target": [
@@ -55,7 +64,16 @@
           "target": "dmg",
           "arch": ["x64"]
         }
-      ]
+      ],
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
     }
   }
 }
