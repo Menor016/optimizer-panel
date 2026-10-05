@@ -11,7 +11,8 @@
     "pack:win": "electron-builder --win",
     "pack:linux": "electron-builder --linux",
     "pack:mac": "electron-builder --mac",
-    "release:ci": "npm run build"
+    "release:ci": "npm run build",
+    "prepare-icons": "node scripts/create-placeholder-icon.js"
   },
   "dependencies": {
     "better-sqlite3": "^11.7.0",
