@@ -1,0 +1,15 @@
+{
+  "name": "optimizer-panel",
+  "version": "1.0.0",
+  "description": "Real OS optimization and monitoring panel",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron ."
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.7.0",
+    "electron": "^31.2.1",
+    "express": "^4.19.2"
+  }
+}

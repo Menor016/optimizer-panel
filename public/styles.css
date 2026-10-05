@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OPTIMIZER PANEL</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Sistema Operacional</p>
+          <h1>OPTIMIZER PANEL</h1>
+        </div>
+        <button id="optimize-now" class="primary">OTIMIZAR AGORA</button>
+      </header>
+
+      <main class="dashboard-grid">
+        <section class="card broad">
+          <div class="section-header">
+            <h2>Monitor</h2>
+            <span id="platform-label">Carregando...</span>
+          </div>
+          <div class="stats-row">
+            <div class="metric-box">
+              <span class="label">CPU</span>
+              <strong id="cpu-usage">--</strong>
+            </div>
+            <div class="metric-box">
+              <span class="label">RAM</span>
+              <strong id="ram-usage">--</strong>
+            </div>
+            <div class="metric-box">
+              <span class="label">Disco</span>
+              <strong id="disk-usage">--</strong>
+            </div>
+            <div class="metric-box">
+              <span class="label">Rede</span>
+              <strong id="network-state">--</strong>
+            </div>
+          </div>
+          <div class="chart-panel">
+            <canvas id="monitor-chart" width="560" height="180"></canvas>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <h2>Processos</h2>
+            <button id="refresh-processes">Atualizar</button>
+          </div>
+          <div class="toolbar">
+            <input id="process-search" type="text" placeholder="Pesquisar processo" />
+            <select id="sort-processes">
+              <option value="cpu">Ordenar por CPU</option>
+              <option value="memory">Ordenar por RAM</option>
+            </select>
+          </div>
+          <div id="process-list" class="process-list"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <h2>Limpeza segura</h2>
+            <button id="analyze-cleanup">Analisar</button>
+          </div>
+          <div id="cleanup-summary" class="summary-box">Sem análise.</div>
+          <div id="cleanup-list" class="list-stack"></div>
+          <button id="run-cleanup" class="danger" hidden>Limpar</button>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <h2>Inicialização</h2>
+          </div>
+          <div id="startup-list" class="list-stack"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <h2>Armazenamento</h2>
+          </div>
+          <div id="storage-list" class="storage-list"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <h2>Rede</h2>
+          </div>
+          <div id="network-panel" class="network-panel"></div>
+          <div class="network-tests">
+            <button data-test="connectivity">Teste de conectividade</button>
+            <button data-test="dns">Teste DNS</button>
+            <button data-test="latency">Teste de latência</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <h2>Desempenho</h2>
+            <select id="history-period">
+              <option value="1m">1 minuto</option>
+              <option value="5m">5 minutos</option>
+              <option value="30m" selected>30 minutos</option>
+              <option value="1h">1 hora</option>
+            </select>
+          </div>
+          <div id="performance-history" class="history-list"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-header">
+            <h2>Histórico</h2>
+          </div>
+          <div id="log-history" class="log-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

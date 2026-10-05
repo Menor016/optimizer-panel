@@ -1,0 +1,25 @@
+const fs = require('fs');
+const path = require('path');
+const os = require('os');
+
+const backupDir = path.join(os.homedir(), '.optimizer-panel', 'backups');
+if (!fs.existsSync(backupDir)) fs.mkdirSync(backupDir, { recursive: true });
+
+function saveBackup(data) {
+  const filePath = path.join(backupDir, `backup-${Date.now()}.json`);
+  fs.writeFileSync(filePath, JSON.stringify({ ...data, createdAt: new Date().toISOString() }, null, 2), 'utf8');
+  return { success: true, filePath, timestamp: new Date().toISOString() };
+}
+
+async function undoLastChange() {
+  const files = fs.readdirSync(backupDir).filter((name) => name.endsWith('.json')).sort();
+  if (!files.length) {
+    return { success: false, errorCode: 'NO_BACKUP', message: 'Nenhum backup disponível para desfazer.' };
+  }
+
+  const last = files[files.length - 1];
+  const payload = JSON.parse(fs.readFileSync(path.join(backupDir, last), 'utf8'));
+  return { success: true, message: 'Última alteração restaurada quando possível.', backup: payload };
+}
+
+module.exports = { saveBackup, undoLastChange };
